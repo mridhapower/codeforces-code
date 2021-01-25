@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+#include<algorithm>
+using namespace std;
+int a[100],b[100];
+int BerSU_Ball(int b[],int start,int end,int x)
+{
+    int t;
+    if (start==end) {
+        if(abs(x-b[start])==1||abs(x-b[start])==0) {
+            b[start]=-100;
+            return 1;
+        }
+        else return 0;
+    }
+
+        int mid=(start+end)/2;
+         int c=BerSU_Ball(b,start,mid,x);
+         if(c!=1)BerSU_Ball(b,mid+1,end,x);
+
+
+
+}
+int main()
+{
+    int n,i,m,x,c=0;
+    cin>>n;
+    for(i=0;i<n;i++)
+    {
+        cin>>a[i];
+    }
+    sort(a,a+n);
+    cin>>m;
+    for(i=0;i<m;i++)
+    {
+        cin>>b[i];
+    }
+    sort(b,b+m);
+    for( i=0;i<n;i++)
+    {
+        x=BerSU_Ball(b,0,m-1,a[i]);
+        c+=x;
+    }
+    cout<<c<<endl;
+    return 0;
+}
